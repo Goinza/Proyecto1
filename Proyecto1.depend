@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1603477535 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1603476713 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\lista.c
+	<stdio.h>
+	<stdlib.h>
+
+1602449245 c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\lista.h
+
