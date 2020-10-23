@@ -1,19 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-const int LST_NO_EXISTE_SIGUIENTE = 1;
-const int LST_NO_EXISTE_ANTERIOR = 2;
-const int LST_POSICION_INVALIDA = 3;
-const int LST_ERROR_MEMORIA = 4;
-
-struct celda{
-    void * elemento;
-    struct celda * siguiente;
-};
-
-typedef struct celda * tLista;
-typedef struct celda * tPosicion;
-typedef void * tElemento;
+#include "lista.h"
 
 void crear_lista(tLista * l) {
     *l = (tLista)  malloc(sizeof(tLista));
