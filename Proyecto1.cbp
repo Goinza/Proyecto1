@@ -38,6 +38,9 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="mapeo.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="mapeo.h" />
 		<Extensions>
 			<code_completion />
