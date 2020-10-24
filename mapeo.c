@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-#ifndef LISTA_H_INCLUDED
-#define LISTA_H_INCLUDED
-
-#include <mapeo.h>
-
-=======
 #include <stdio.h>
 #include <stdlib.h>
 #include "mapeo.h"
@@ -23,4 +16,16 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
     (*m)->comparador = fComparacion;
     crear_lista((*m)->tabla_hash);
 }
->>>>>>> 7e565bb9d378e56692632fc65dc3687782b21718
+
+tValor m_insertar(tMapeo m, tClave c, tValor v){
+
+    Codigo=hash_code(&c);
+    *(tabla_hash+(Codigo-1))->
+    /*
+    *tEntrada = (tEntrada) malloc(sizeof(tEntrada));
+
+    if (* == NULL) {
+        exit(MAP_ERROR_MEMORIA);
+    }
+    */
+}
