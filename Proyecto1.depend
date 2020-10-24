@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1603477535 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\main.c
+1603481635 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"lista.h"

@@ -14,7 +14,32 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
     (*m)->cantidad_elementos = 0;
     (*m)->hash_code = fHash;
     (*m)->comparador = fComparacion;
-    crear_lista((*m)->tabla_hash);
+
+    (*m)->tabla_hash = malloc(sizeof(tLista) * ci);
+    int i;
+    for (i=0; i<ci; i++) {
+        crear_lista((*m)->tabla_hash + i);
+    }
+}
+
+tValor m_recuperar(tMapeo m, tClave c) {
+    int indice = m->hash_code(c) % m->cantidad_elementos;
+    tLista lista = *(m->tabla_hash + indice);
+
+    tPosicion pos = l_primera(lista);
+    int found = 0;
+    tEntrada en;
+    tValor val = NULL;
+    while (pos != NULL && !found) {
+        en = (tEntrada) l_recuperar(lista, pos);
+        if (m->comparador(en->clave, c) == 0) {
+            //clave de en == clave c, se encontro la entrada correcta
+            val = en->valor;
+            found = 1;
+        }
+    }
+
+    return val;
 }
 
 tValor m_insertar(tMapeo m, tClave c, tValor v){
