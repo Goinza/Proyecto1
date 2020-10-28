@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
     if (file==NULL) {
         printf("Error. El archivo no existe");
     }
-
+    //printf("El archivo se tomo correctamente. \n"); //BORRAR
     //Se cargan las palabras del archivo a la tabla hash
     char str[20];
     tClave c;
@@ -70,7 +70,10 @@ int main(int argc, char *argv[]) {
     int * aux;
     tValor valor_viejo;
     while (fscanf(file, "%s", str)!=EOF) {
+        //printf("Palabra leida: %s. \n", str); //BORRAR
+        //printf("Longitud palabra preRecup: %i. \n", strlen(str)); //BORRAR
         aux = m_recuperar(map, str);
+        //printf("Longitud palabra posRecu: %i. \n", strlen(str)); //BORRAR
         v = (int *) malloc(sizeof(int));
         if (aux == NULL) {
             c = malloc(sizeof(char) * strlen(str));

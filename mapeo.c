@@ -81,6 +81,14 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
         pos_actual = l_siguiente(lista_actual, pos_actual);
         i++;
     }
+    //BORRAR-->
+    printf(" Clave: %s Valor: %i \n", c, *((int *) v));
+    if (esta){
+       printf("Se encontro clave \n");
+    }else{
+        printf("NO se encontro clave \n");
+    }
+    //<--BORRAR
     if (!esta){ //Si no se encontro la entrada, se crea una nueva y se incerta en la lista.
         tEntrada nueva_entrada= (tEntrada) malloc(sizeof(tEntrada));
         if (nueva_entrada == NULL){
@@ -90,8 +98,12 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
         nueva_entrada->valor=v;
         l_insertar(lista_actual, l_primera(lista_actual), nueva_entrada);
         m->cantidad_elementos++;
+        //BORRAR-->
+        printf("Se creo nueva entrada con clave: %s y valor: %i \n", nueva_entrada->clave, nueva_entrada->valor);
+        //<--BORRAR
         if (m->cantidad_elementos/m->longitud_tabla>=0.75){ //Si se supera el factor de carga, se redimenciona la tabla hash
             redimensionar(m);
+            printf("Factor de carga actual: %f \n", (float) m->cantidad_elementos/m->longitud_tabla); //BORRAR
         }
     }
     return valor_reemplazado;

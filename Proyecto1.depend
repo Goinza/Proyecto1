@@ -23,3 +23,27 @@
 	<string.h>
 	"mapeo.h"
 
+1603914450 source:d:\jeremias\documents\c\proyecto compartido\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1603858589 d:\jeremias\documents\c\proyecto compartido\lista.h
+
+1603858589 source:d:\jeremias\documents\c\proyecto compartido\main.c
+
+1603914424 source:d:\jeremias\documents\c\proyecto compartido\evaluador.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"mapeo.h"
+
+1603858589 d:\jeremias\documents\c\proyecto compartido\mapeo.h
+	"lista.h"
+
+1603914424 source:d:\jeremias\documents\c\proyecto compartido\mapeo.c
+	<stdio.h>
+	<stdlib.h>
+	"mapeo.h"
+	"lista.h"
+

@@ -102,7 +102,7 @@ void l_eliminar(tLista l, tPosicion p, void (*fEliminar)(tElemento)) {
 }
 
 void l_destruir(tLista * l, void (*fEliminar)(tElemento)) {
-    tPosicion pos = (tPosicion) l;
+    tPosicion pos = (tPosicion) *l;
     tPosicion aux;
     while (pos != NULL) {
         aux = pos;
