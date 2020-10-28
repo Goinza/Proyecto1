@@ -59,12 +59,11 @@ tPosicion l_anterior(tLista l, tPosicion p) {
 
 tPosicion l_ultima(tLista l) {
     tPosicion aux = l;
-    if (l->siguiente != NULL) {
+    if (aux->siguiente != NULL) {
         while (aux->siguiente->siguiente != NULL) {
             aux = aux->siguiente;
         }
     }
-
 
     return aux;
 }
@@ -102,10 +101,11 @@ void l_eliminar(tLista l, tPosicion p, void (*fEliminar)(tElemento)) {
 }
 
 void l_destruir(tLista * l, void (*fEliminar)(tElemento)) {
-    tPosicion pos = (tPosicion) l;
+    tPosicion pos = (tPosicion) *l;
     tPosicion aux;
     while (pos != NULL) {
         aux = pos;
+        printf("Valor: %d", (int *) pos->elemento);
         pos = pos->siguiente;
         fEliminar(aux->elemento);
         free(aux);
