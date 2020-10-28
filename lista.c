@@ -71,7 +71,7 @@ tPosicion l_ultima(tLista l) {
 
 tPosicion l_fin(tLista l) {
     tPosicion aux = l;
-    if (l->siguiente != NULL) {
+    if (aux->siguiente != NULL) {
         while (aux->siguiente != NULL) {
             aux = aux->siguiente;
         }
@@ -97,8 +97,8 @@ void l_eliminar(tLista l, tPosicion p, void (*fEliminar)(tElemento)) {
     }
     tPosicion pEliminar = p->siguiente;
     p->siguiente = pEliminar->siguiente;
-    free(pEliminar);
     fEliminar(pEliminar->elemento);
+    free(pEliminar);
 }
 
 void l_destruir(tLista * l, void (*fEliminar)(tElemento)) {

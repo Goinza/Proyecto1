@@ -69,7 +69,7 @@ extern tPosicion l_primera(tLista l);
 **/
 extern tPosicion l_siguiente(tLista l, tPosicion p);
 
-/**
+/**d
  Recupera y retorna la posición anterior a P en L.
  Finaliza indicando LST_NO_EXISTE_ANTERIOR si P es primera(L).
 **/

@@ -1,14 +1,14 @@
 # depslib dependency file v1.0
 1603748139 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\main.c
 
-1603478765 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\lista.c
+1603857114 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\lista.c
 	<stdio.h>
 	<stdlib.h>
 	"lista.h"
 
-1602449245 c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\lista.h
+1603855908 c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\lista.h
 
-1603665337 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\mapeo.c
+1603858317 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\mapeo.c
 	<stdio.h>
 	<stdlib.h>
 	"mapeo.h"
@@ -17,8 +17,9 @@
 1602449248 c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\mapeo.h
 	"lista.h"
 
-1603753011 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\evaluador.c
+1603858343 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\evaluador.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"mapeo.h"
 
