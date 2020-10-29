@@ -59,12 +59,11 @@ tPosicion l_anterior(tLista l, tPosicion p) {
 
 tPosicion l_ultima(tLista l) {
     tPosicion aux = l;
-    if (l->siguiente != NULL) {
+    if (aux->siguiente != NULL) {
         while (aux->siguiente->siguiente != NULL) {
             aux = aux->siguiente;
         }
     }
-
 
     return aux;
 }
