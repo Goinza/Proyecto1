@@ -49,7 +49,6 @@ int comparatorString(void *c1, void *c2) {
         }
         i++;
     }
-    //printf("Comparar %s con %s: %d\n", s1, s2, resultado);
     return resultado;
 }
 
@@ -57,34 +56,30 @@ int main(int argc, char *argv[]) {
     //Se crea el archivo de lectura
     FILE * file;
     tMapeo map;
-    crear_mapeo(&map, 100, hashString, comparatorString);
-    file = fopen("test.txt", "r");
+    crear_mapeo(&map, 10, hashString, comparatorString);
+    file = fopen(argv[1], "r");
     if (file==NULL) {
         printf("Error. El archivo no existe");
+        exit(-1);
     }
 
-    //Se cargan las palabras del archivo a la tabla hash
-    char str[20];
-    tClave c;
+    //Se insertan las palabras al mapeo
+    char * str = (char *) malloc(sizeof(char)*20);
+    char * c;
     int * v;
-    int * aux;
-    tValor valor_viejo;
+    int * valor_viejo;
     while (fscanf(file, "%s", str)!=EOF) {
-        aux = m_recuperar(map, str);
-        v = (int *) malloc(sizeof(int));
-        if (aux == NULL) {
-            c = malloc(sizeof(char) * strlen(str));
-            *v = 1;
+        c = malloc(sizeof(char)*20);
+        strcpy(c, str);
+        valor_viejo = m_recuperar(map, c);
+        v = malloc(sizeof(int));
+        if (valor_viejo == NULL) {
+           *v = 1;
         }
         else {
-            *v = (*aux) + 1;
+            *v = *(valor_viejo) + 1;
         }
-        c = str;
-        valor_viejo = m_insertar(map, c, v);
-        if (valor_viejo != NULL) {
-            free(c);
-            free(aux);
-        }
+        m_insertar(map, c, v);
     }
 
     //Menu del programa

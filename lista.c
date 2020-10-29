@@ -105,7 +105,6 @@ void l_destruir(tLista * l, void (*fEliminar)(tElemento)) {
     tPosicion aux;
     while (pos != NULL) {
         aux = pos;
-        printf("Valor: %d", (int *) pos->elemento);
         pos = pos->siguiente;
         fEliminar(aux->elemento);
         free(aux);

@@ -49,18 +49,17 @@ void redimensionar(tMapeo m){
             pos_actual = l_primera(lista_actual_vieja);
             for (t=0; t<l_longitud(lista_actual_vieja); t++){
                 entrada_actual = (tEntrada) l_recuperar(lista_actual_vieja, pos_actual);
-                lista_actual_nueva = *(tabla_nueva + m->hash_code(entrada_actual->clave) % m->cantidad_elementos);
-                l_insertar(lista_actual_nueva, l_ultima(lista_actual_nueva), entrada_actual);
+                lista_actual_nueva = *(tabla_nueva + m->hash_code(entrada_actual->clave) % m->longitud_tabla);
+                l_insertar(lista_actual_nueva, l_primera(lista_actual_nueva), entrada_actual);
                 pos_actual = l_siguiente(lista_actual_vieja, pos_actual);
             }
         }
     }
     tabla_hash_vieja = m->tabla_hash;
     m->tabla_hash = tabla_nueva;
-    for (i=0; i<m->longitud_tabla; i++){
+    for (i=0; i<long_vieja; i++){
         l_destruir((tabla_hash_vieja+i), no_eliminar_entrada);
     }
-    free(tabla_hash_vieja);
 }
 
 tValor m_insertar(tMapeo m, tClave c, tValor v){
@@ -90,7 +89,7 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
         nueva_entrada->valor=v;
         l_insertar(lista_actual, l_primera(lista_actual), nueva_entrada);
         m->cantidad_elementos++;
-        if (m->cantidad_elementos/m->longitud_tabla>=0.75){ //Si se supera el factor de carga, se redimenciona la tabla hash
+        if (((float)m->cantidad_elementos)/m->longitud_tabla>=0.75){ //Si se supera el factor de carga, se redimenciona la tabla hash
             redimensionar(m);
         }
     }
@@ -122,40 +121,22 @@ void m_destruir(tMapeo * m, void (*fEliminarC)(void *), void (*fEliminarV)(void 
     tMapeo map = *m;
     int count = map->longitud_tabla;
     int i;
-    tLista lista;
-    tPosicion pos;
-    tEntrada en;
     for (i=0; i<count; i++) {
-        lista = *(map->tabla_hash + i);
-        pos = l_primera(lista);
-        while (pos != l_fin(lista)) {
-            printf("TEST\n");
-            en = (tEntrada) l_recuperar(lista, pos);
-            fEliminarC(en->clave);
-            fEliminarV(en->valor);
-            l_eliminar(*(map->tabla_hash + i), pos, eliminarEntrada);
-            //pos = l_siguiente(lista, pos);
-        }
-        /*printf("BEGIN TESTING - ");
         l_destruir(map->tabla_hash + i, eliminarEntrada);
-        printf("END TESTING\n");*/
     }
-    free(map->tabla_hash);
     free(m);
 }
 
 tValor m_recuperar(tMapeo m, tClave c) {
     int indice = m->hash_code(c) % m->longitud_tabla;
     tLista lista = *(m->tabla_hash + indice);
-    //printf("Clave: %s - Indice: %d\n", c, indice);
     tPosicion pos = l_primera(lista);
     int found = 0;
     tEntrada en;
     tValor val = NULL;
     while (pos != l_fin(lista) && !found) {
         en = (tEntrada) l_recuperar(lista, pos);
-        //printf("Clave: %s - Valor: %d\n", en->clave, en->valor);
-        if (m->comparador(en->clave, c) == 0) {
+        if (m->comparador((en->clave), c) == 0) {
             //clave de en == clave c, se encontro la entrada correcta
             val = en->valor;
             found = 1;
