@@ -14,7 +14,7 @@ void eliminarString(void * e) {
 int hashString(void * c) {
     int i;
     int hashCode = 0;
-    char * string = (char *) c;
+    char * string = *((char *) c);
     int caracter;
     for (i=0; i<strlen(string); i++) {
         caracter = (int) *(string+i);
@@ -32,8 +32,8 @@ int hashString(void * c) {
 //Si son palabras, se transforman a minusculas para que, por ejemplo,
 //la palabra "Hola" sea equivalente a "hola".
 int comparatorString(void *c1, void *c2) {
-    char * s1 = (char *) c1;
-    char * s2 = (char *) c2;
+    char * s1 = *((char *) c1);
+    char * s2 = *((char *) c2);
     int letra1, letra2;
     int i = 0;
     int longitud = strlen(s1) > strlen(s2) ? strlen(s1) : strlen(s2);
@@ -54,6 +54,39 @@ int comparatorString(void *c1, void *c2) {
 }
 
 int main(int argc, char *argv[]) {
+    //---------------esto a borrar------------
+    tMapeo map;
+    crear_mapeo(&map, 100, hashString, comparatorString);
+    char * string1, * string2, * string3, * string1_2, * string2_2, * string3_2;
+    char * * string_guardar;
+    string1 = "hola";
+    string2 = "ppeñanieto";
+    string3 = "carlos";
+    string1_2 = "hola";
+    string2_2 = "ppeñanieto";
+    string3_2 = "carlos";
+    int num1, num2, num3;
+    num1=1;
+    num2=2;
+    num3=3;
+    printf("insertar 1. \n");
+    string_guardar = malloc(sizeof(char) * strlen(string1));
+    *string_guardar = string1;
+    m_insertar(map, string1, &num1);
+    printf("insertar 2. \n");
+    string_guardar = malloc(sizeof(char) * strlen(string2));
+    *string_guardar = string2;
+    m_insertar(map, string_guardar, &num2);
+    printf("insertar 2. \n");
+    string_guardar = malloc(sizeof(char) * strlen(string3));
+    *string_guardar = string3;
+    m_insertar(map, string_guardar, &num3);
+    printf("todo insertado. \n");
+     printf("Valor del 'hola': %i (seria1) \n",*((int *) m_recuperar(map, &string1_2)));
+     printf("Valor del 'ppeñanieto': %i (seria2) \n", *((int *)m_recuperar(map, &string2_2)));
+     printf("Valor del 'carlos': %i (seria3) \n", *((int *)m_recuperar(map, &string3_2)));
+     //-------------------------borrar---------------
+    /*
     //Se crea el archivo de lectura
     FILE * file;
     tMapeo map;
@@ -112,6 +145,6 @@ int main(int argc, char *argv[]) {
             printf("La palabra %s tiene %d apariciones\n", string, cuenta);
         }
     }
-
+*/
     return 0;
 }

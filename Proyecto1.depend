@@ -32,7 +32,7 @@
 
 1603858589 source:d:\jeremias\documents\c\proyecto compartido\main.c
 
-1603914424 source:d:\jeremias\documents\c\proyecto compartido\evaluador.c
+1603924916 source:d:\jeremias\documents\c\proyecto compartido\evaluador.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -41,7 +41,7 @@
 1603858589 d:\jeremias\documents\c\proyecto compartido\mapeo.h
 	"lista.h"
 
-1603914424 source:d:\jeremias\documents\c\proyecto compartido\mapeo.c
+1603924500 source:d:\jeremias\documents\c\proyecto compartido\mapeo.c
 	<stdio.h>
 	<stdlib.h>
 	"mapeo.h"

@@ -64,6 +64,7 @@ void redimensionar(tMapeo m){
 }
 
 tValor m_insertar(tMapeo m, tClave c, tValor v){
+
     int esta=0;
     int codigo=m->hash_code(c) % m->longitud_tabla;
     tValor valor_reemplazado = NULL;
@@ -76,18 +77,19 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
         if (m->comparador(entrada_actual->clave, c)==0){ //Si las claves son iguales, entonces copio el valor a remplazar dentro de la entrada
             esta=1;
             valor_reemplazado=entrada_actual->valor;
-            entrada_actual->valor=v;
+            entrada_actual->valor=v; //No estoy copiando punteros?
         }
         pos_actual = l_siguiente(lista_actual, pos_actual);
         i++;
     }
     //BORRAR-->
+    /*
     printf(" Clave: %s Valor: %i \n", c, *((int *) v));
     if (esta){
        printf("Se encontro clave \n");
     }else{
         printf("NO se encontro clave \n");
-    }
+    }*/
     //<--BORRAR
     if (!esta){ //Si no se encontro la entrada, se crea una nueva y se incerta en la lista.
         tEntrada nueva_entrada= (tEntrada) malloc(sizeof(tEntrada));
