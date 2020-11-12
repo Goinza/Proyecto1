@@ -36,16 +36,17 @@ void redimensionar(tMapeo m){
     tPosicion pos_actual;
     int i, t, longitud;
     unsigned int long_vieja = m->longitud_tabla;
+    int aumento = 100;
     //Creo la nueva tabla hash
-    tLista * tabla_nueva = malloc(sizeof(tLista) * (m->longitud_tabla+10));  //ToDo:: Se debe hacer con struct celda?, no se crean las listas abajo con crear_lista()?
+    tLista * tabla_nueva = malloc(sizeof(tLista) * (m->longitud_tabla+aumento));  //ToDo:: Se debe hacer con struct celda?, no se crean las listas abajo con crear_lista()?
     if (tabla_nueva == NULL) {
         exit(MAP_ERROR_MEMORIA);
     }
-    for (i=0; i<(m->longitud_tabla+10); i++) {
+    for (i=0; i<(m->longitud_tabla+aumento); i++) {
         crear_lista(tabla_nueva + i);
     }
 
-    m->longitud_tabla+=100;
+    m->longitud_tabla+=aumento;
     for (i=0; i<long_vieja; i++){  //recorro tabla_hash vieja
         lista_actual_vieja = *(m->tabla_hash+i);
         if (l_longitud(lista_actual_vieja)>0){ //recorro la lista de la tabla vieja si tiene elementos
@@ -59,6 +60,7 @@ void redimensionar(tMapeo m){
             }
         }
     }
+
     tabla_hash_vieja = m->tabla_hash;
     m->tabla_hash = tabla_nueva;
     for (i=0; i<long_vieja; i++){

@@ -61,3 +61,25 @@
 	<stdlib.h>
 	"lista.h"
 
+1605219373 source:c:\gonzalo\git\proyecto1\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1605216533 c:\gonzalo\git\proyecto1\lista.h
+
+1605219510 source:c:\gonzalo\git\proyecto1\mapeo.c
+	<stdio.h>
+	<stdlib.h>
+	"mapeo.h"
+	"lista.h"
+
+1605216533 c:\gonzalo\git\proyecto1\mapeo.h
+	"lista.h"
+
+1605219574 source:c:\gonzalo\git\proyecto1\evaluador.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"mapeo.h"
+

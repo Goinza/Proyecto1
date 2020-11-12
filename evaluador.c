@@ -55,12 +55,12 @@ int comparatorString(void *c1, void *c2) {
 int main(int argc, char *argv[]) {
     if (argc < 2) {
         //No se especifico archivo
-        printf("Error. No se especificó el archivo a leer");
+        printf("Error. No se especifico el archivo a leer");
         exit(-2);
     }
     if (argc > 2) {
         //Hay parametros de mas
-        printf("Error. Hay demasaiados parámetros en la invocación del programa");
+        printf("Error. Hay demasaiados parametros en la invocacion del programa");
         exit(-2);
     }
 
@@ -92,7 +92,6 @@ int main(int argc, char *argv[]) {
         }
         m_insertar(map, c, v);
     }
-
     //Menu del programa
     char * string = (char*) malloc(sizeof(char)*20);
     int * puntCuenat;
