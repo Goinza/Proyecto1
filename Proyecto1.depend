@@ -23,6 +23,8 @@
 	<string.h>
 	"mapeo.h"
 
+1603984311 D
+
 1603981081 source:c:\gonzalo\documentos gonza\uns\2020 2º cuatrimestre\organizacion de computadoras\proyectos\proyecto1\tester_lista.c
 	<stdio.h>
 	<stdlib.h>
@@ -50,6 +52,11 @@
 	"lista.h"
 
 1605204631 source:d:\jeremias\documents\c\proyecto compartido\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+
+1603479552 f9f6e60c4dfbbcf95cfbff5a578b3032bd7fc
 	<stdio.h>
 	<stdlib.h>
 	"lista.h"

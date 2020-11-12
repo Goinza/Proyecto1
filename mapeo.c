@@ -145,3 +145,69 @@ tValor m_recuperar(tMapeo m, tClave c) {
     }
     return val;
 }
+
+tValor m_insertar(tMapeo m, tClave c, tValor v){
+    int esta=0;
+    int Codigo=m->hash_code(&c);
+    tValor valor_reemplazado = NULL;
+    tLista * lista_actual= (m->tabla_hash+(Codigo));
+    tEntrada entrada_actual=(tEntrada) l_recuperar(lista_actual, l_primera(lista_actual));
+
+    int i=0;
+    while ((i<l_longitud(lista_actual)) && (!esta)){
+        if (m->comparador(entrada_actual->clave, c)==0){ //Si las claves son iguales, entonces copio el valor a remplazar dentro de la entrada
+            esta=1;
+            valor_reemplazado=entrada_actual->valor;
+            entrada_actual->valor=v;
+        }
+        entrada_actual=l_siguiente(lista_actual, entrada_actual); //--esto funciona no?--
+        i++;
+    }
+    if (!esta){ //Si no se encontro la entrada, se crea una nueva y se incerta en la lista.
+        tEntrada nueva_entrada= (tEntrada) malloc(sizeof(tEntrada));
+        if (nueva_entrada == NULL){
+            exit(MAP_ERROR_MEMORIA);
+        }
+        nueva_entrada->clave=c;
+        nueva_entrada->valor=v;
+        l_insertar(lista_actual, l_ultima(lista_actual), nueva_entrada);
+        m->cantidad_elementos++;
+        if (m->cantidad_elementos/m->longitud_tabla>=0.75){ //Si se supera el factor de carga, se redimenciona la tabla hash
+            redimensionar(m);
+        }
+    }
+    return valor_reemplazado;
+}
+
+ void redimensionar(tMapeo m){
+    tLista * lista_actual_vieja, * lista_actual_nueva, *tabla_hash_vieja;
+    tEntrada entrada_actual;
+    int i, t;
+    unsigned int long_vieja = m->longitud_tabla;
+    //Creo la nueva tabla hash
+    tLista * tabla_nueva = realloc(m->tabla_hash, m->longitud_tabla+10);
+    for (i=0; i<(m->longitud_tabla+10); i++) {
+        crear_lista(tabla_nueva + i);
+    }
+
+    m->longitud_tabla+=10;
+    for (i=0; i<long_vieja; i++){  //recorro tabla_hash vieja
+        lista_actual_vieja = (m->tabla_hash+i);
+        if (l_longitud(lista_actual_vieja)>0){ //recorro la lista de la tabla vieja si tiene elementos
+            entrada_actual = (tEntrada) l_recuperar(lista_actual_vieja, l_primera(lista_actual_vieja));
+            for (t=0; t<l_longitud(lista_actual_vieja); t++){
+                lista_actual_nueva = (tabla_nueva + m->hash_code(entrada_actual->clave));
+                l_insertar(lista_actual_nueva, l_ultima(lista_actual_nueva), entrada_actual);
+                entrada_actual = l_siguiente(lista_actual_vieja, entrada_actual)->elemento;
+            }
+        }
+    }
+    tabla_hash_vieja = m->tabla_hash;
+    m->tabla_hash = tabla_nueva;
+    for (i=0; i<l_longitud(tabla_hash_vieja); i++){
+        l_destruir((tabla_hash_vieja+i),no_eliminar_entrada(NULL));
+    }
+}
+void no_eliminar_entrada(tEntrada entrada){
+    //Funcion DUMMIE para el l_destruir() de lista.
+    }
