@@ -38,15 +38,8 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="lista.h" />
-		<Unit filename="main.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="mapeo.c">
 			<Option compilerVar="CC" />
-<<<<<<< HEAD
-			<Option target="&lt;{~None~}&gt;" />
-=======
->>>>>>> 3268a5cd881548c26f79d6f49a1484871baa66f6
 		</Unit>
 		<Unit filename="mapeo.h" />
 		<Extensions>
