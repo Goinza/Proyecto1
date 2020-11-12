@@ -18,7 +18,7 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
     (*m)->hash_code = fHash;
     (*m)->comparador = fComparacion;
 
-    (*m)->tabla_hash = malloc(sizeof(tLista) * ci); //ToDo:: Se debe hacer con struct celda?, no se crean las listas abajo con crear_lista()?
+    (*m)->tabla_hash = malloc(sizeof(struct celda) * ci); //ToDo:: Se debe hacer con struct celda?, no se crean las listas abajo con crear_lista()?
     int i;
     for (i=0; i<ci; i++) {
         crear_lista((*m)->tabla_hash + i);
@@ -30,7 +30,6 @@ void no_eliminar_entrada(tElemento entrada){
 }
 
 void redimensionar(tMapeo m){
-    tLista * tabla_hash_vieja;
     tLista lista_actual_vieja, lista_actual_nueva;
     tEntrada entrada_actual;
     tPosicion pos_actual;
@@ -49,9 +48,9 @@ void redimensionar(tMapeo m){
     m->longitud_tabla+=aumento;
     for (i=0; i<long_vieja; i++){  //recorro tabla_hash vieja
         lista_actual_vieja = *(m->tabla_hash+i);
-        if (l_longitud(lista_actual_vieja)>0){ //recorro la lista de la tabla vieja si tiene elementos
+        longitud = l_longitud(lista_actual_vieja);
+        if (longitud>0){ //recorro la lista de la tabla vieja si tiene elementos
             pos_actual = l_primera(lista_actual_vieja);
-            longitud = l_longitud(lista_actual_vieja);
             for (t=0; t<longitud; t++){
                 entrada_actual = (tEntrada) l_recuperar(lista_actual_vieja, pos_actual);
                 lista_actual_nueva = *(tabla_nueva + m->hash_code(entrada_actual->clave) % m->longitud_tabla);
@@ -59,13 +58,9 @@ void redimensionar(tMapeo m){
                 pos_actual = l_siguiente(lista_actual_vieja, pos_actual);
             }
         }
+        l_destruir(&lista_actual_vieja, no_eliminar_entrada);
     }
-
-    tabla_hash_vieja = m->tabla_hash;
     m->tabla_hash = tabla_nueva;
-    for (i=0; i<long_vieja; i++){
-        l_destruir((tabla_hash_vieja+i), no_eliminar_entrada);
-    }
 }
 
 tValor m_insertar(tMapeo m, tClave c, tValor v){
