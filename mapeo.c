@@ -33,19 +33,23 @@ void redimensionar(tMapeo m){
     tLista lista_actual_vieja, lista_actual_nueva;
     tEntrada entrada_actual;
     tPosicion pos_actual;
-    int i, t;
+    int i, t, longitud;
     unsigned int long_vieja = m->longitud_tabla;
     //Creo la nueva tabla hash
-    tLista * tabla_nueva = malloc(sizeof(struct celda) * (m->longitud_tabla+100));  //ToDo:: Se debe hacer con struct celda?, no se crean las listas abajo con crear_lista()?
-    for (i=0; i<(m->longitud_tabla+100); i++) {
+    tLista * tabla_nueva = malloc(sizeof(tLista) * (m->longitud_tabla+10));  //ToDo:: Se debe hacer con struct celda?, no se crean las listas abajo con crear_lista()?
+    if (tabla_nueva == NULL) {
+        exit(MAP_ERROR_MEMORIA);
+    }
+    for (i=0; i<(m->longitud_tabla+10); i++) {
         crear_lista(tabla_nueva + i);
     }
     m->longitud_tabla+=100;
     for (i=0; i<long_vieja; i++){  //recorro tabla_hash vieja
         lista_actual_vieja = *(m->tabla_hash+i);
-        if (l_longitud(lista_actual_vieja)>0){ //recorro la lista de la tabla vieja si tiene elementos
+        longitud = l_longitud(lista_actual_vieja);
+        if (longitud>0){ //recorro la lista de la tabla vieja si tiene elementos
             pos_actual = l_primera(lista_actual_vieja);
-            for (t=0; t<l_longitud(lista_actual_vieja); t++){
+            for (t=0; t<longitud; t++){
                 entrada_actual = (tEntrada) l_recuperar(lista_actual_vieja, pos_actual);
                 lista_actual_nueva = *(tabla_nueva + m->hash_code(entrada_actual->clave) % m->longitud_tabla);
                 l_insertar(lista_actual_nueva, l_primera(lista_actual_nueva), entrada_actual);
@@ -65,7 +69,8 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
     tPosicion pos_actual = l_primera(lista_actual);
     tEntrada entrada_actual;
     int i=0;
-    while ((i<l_longitud(lista_actual)) && (!esta)){
+    int longitud = l_longitud(lista_actual);
+    while ((i<longitud) && (!esta)){
         entrada_actual = l_recuperar(lista_actual, pos_actual);
         if (m->comparador(entrada_actual->clave, c)==0){ //Si las claves son iguales, entonces copio el valor a remplazar dentro de la entrada
             esta=1;
@@ -98,7 +103,8 @@ void m_eliminar(tMapeo m, tClave c, void (*fEliminarC)(void *), void (*fEliminar
     tPosicion pos = l_primera(lista);
     int found = 0;
     tEntrada en;
-    while (pos != l_fin(lista) && !found) {
+    tPosicion fin = l_fin(lista);
+    while (pos != fin && !found) {
         en = (tEntrada) l_recuperar(lista, pos);
         if (m->comparador(en->clave, c) == 0) {
             found = 1;
@@ -129,7 +135,8 @@ tValor m_recuperar(tMapeo m, tClave c) {
     int found = 0;
     tEntrada en;
     tValor val = NULL;
-    while (pos != l_fin(lista) && !found) {
+    tPosicion fin = l_fin(lista);
+    while (pos != fin && !found) {
         en = (tEntrada) l_recuperar(lista, pos);
         if (m->comparador((en->clave), c) == 0) {
             //clave de en == clave c, se encontro la entrada correcta
