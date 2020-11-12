@@ -3,7 +3,7 @@
 #include "lista.h"
 
 void crear_lista(tLista * l) {
-    *l = (tLista)  malloc(sizeof(tLista));
+    *l = (tLista)  malloc(sizeof(struct celda));
     if (*l == NULL) {
         exit(LST_ERROR_MEMORIA);
     }
@@ -12,7 +12,7 @@ void crear_lista(tLista * l) {
 }
 
 void l_insertar(tLista l, tPosicion p, tElemento e) {
-    tPosicion nuevaPos = (tPosicion) malloc(sizeof(tPosicion));
+    tPosicion nuevaPos = (tPosicion) malloc(sizeof(struct celda));
     if (nuevaPos == NULL) {
         exit(LST_ERROR_MEMORIA);
     }

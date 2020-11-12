@@ -30,3 +30,27 @@
 	"lista.h"
 	"mapeo.h"
 
+1603990834 source:d:\jeremias\documents\c\proyecto compartido\evaluador.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"mapeo.h"
+
+1603990834 d:\jeremias\documents\c\proyecto compartido\mapeo.h
+	"lista.h"
+
+1603990834 d:\jeremias\documents\c\proyecto compartido\lista.h
+
+1603990834 source:d:\jeremias\documents\c\proyecto compartido\main.c
+
+1605205411 source:d:\jeremias\documents\c\proyecto compartido\mapeo.c
+	<stdio.h>
+	<stdlib.h>
+	"mapeo.h"
+	"lista.h"
+
+1605204631 source:d:\jeremias\documents\c\proyecto compartido\lista.c
+	<stdio.h>
+	<stdlib.h>
+	"lista.h"
+

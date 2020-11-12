@@ -8,7 +8,7 @@ void eliminarEntrada(void * en) {
 }
 
 void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(void *, void*)) {
-    *m = (tMapeo) malloc(sizeof(tMapeo));
+    *m = (tMapeo) malloc(sizeof(struct mapeo));
     if (*m == NULL) {
         exit(MAP_ERROR_MEMORIA);
     }
@@ -18,7 +18,7 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
     (*m)->hash_code = fHash;
     (*m)->comparador = fComparacion;
 
-    (*m)->tabla_hash = malloc(sizeof(tLista) * ci);
+    (*m)->tabla_hash = malloc(sizeof(tLista) * ci); //ToDo:: Se debe hacer con struct celda?, no se crean las listas abajo con crear_lista()?
     int i;
     for (i=0; i<ci; i++) {
         crear_lista((*m)->tabla_hash + i);
@@ -37,7 +37,7 @@ void redimensionar(tMapeo m){
     int i, t;
     unsigned int long_vieja = m->longitud_tabla;
     //Creo la nueva tabla hash
-    tLista * tabla_nueva = malloc(sizeof(tLista) * (m->longitud_tabla+10));
+    tLista * tabla_nueva = malloc(sizeof(tLista) * (m->longitud_tabla+10));  //ToDo:: Se debe hacer con struct celda?, no se crean las listas abajo con crear_lista()?
     for (i=0; i<(m->longitud_tabla+10); i++) {
         crear_lista(tabla_nueva + i);
     }
@@ -81,7 +81,7 @@ tValor m_insertar(tMapeo m, tClave c, tValor v){
         i++;
     }
     if (!esta){ //Si no se encontro la entrada, se crea una nueva y se incerta en la lista.
-        tEntrada nueva_entrada= (tEntrada) malloc(sizeof(tEntrada));
+        tEntrada nueva_entrada= (tEntrada) malloc(sizeof(struct entrada));
         if (nueva_entrada == NULL){
             exit(MAP_ERROR_MEMORIA);
         }
