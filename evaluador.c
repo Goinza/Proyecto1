@@ -53,6 +53,17 @@ int comparatorString(void *c1, void *c2) {
 }
 
 int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        //No se especifico archivo
+        printf("Error. No se especificó el archivo a leer");
+        exit(-2);
+    }
+    if (argc > 2) {
+        //Hay parametros de mas
+        printf("Error. Hay demasaiados parámetros en la invocación del programa");
+        exit(-2);
+    }
+
     //Se crea el archivo de lectura
     FILE * file;
     tMapeo map;
