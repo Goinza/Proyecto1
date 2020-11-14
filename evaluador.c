@@ -90,8 +90,13 @@ int main(int argc, char *argv[]) {
         else {
             *v = *(valor_viejo) + 1;
         }
-        m_insertar(map, c, v);
+        if (m_insertar(map, c, v) != NULL) {
+            free(c);
+            free(valor_viejo);
+        }
     }
+    free(str);
+
     //Menu del programa
     char * string = (char*) malloc(sizeof(char)*20);
     int * puntCuenat;

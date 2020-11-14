@@ -18,7 +18,7 @@ void crear_mapeo(tMapeo * m, int ci, int (*fHash)(void *), int (*fComparacion)(v
     (*m)->hash_code = fHash;
     (*m)->comparador = fComparacion;
 
-    (*m)->tabla_hash = malloc(sizeof(struct celda) * ci); //ToDo:: Se debe hacer con struct celda?, no se crean las listas abajo con crear_lista()?
+    (*m)->tabla_hash = malloc(sizeof(struct celda) * ci);
     int i;
     for (i=0; i<ci; i++) {
         crear_lista((*m)->tabla_hash + i);
@@ -37,7 +37,7 @@ void redimensionar(tMapeo m){
     unsigned int long_vieja = m->longitud_tabla;
     int aumento = 100;
     //Creo la nueva tabla hash
-    tLista * tabla_nueva = malloc(sizeof(tLista) * (m->longitud_tabla+aumento));  //ToDo:: Se debe hacer con struct celda?, no se crean las listas abajo con crear_lista()?
+    tLista * tabla_nueva = malloc(sizeof(struct celda) * (m->longitud_tabla+aumento));
     if (tabla_nueva == NULL) {
         exit(MAP_ERROR_MEMORIA);
     }
