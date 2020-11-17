@@ -60,6 +60,7 @@ void redimensionar(tMapeo m){
         }
         l_destruir(&lista_actual_vieja, no_eliminar_entrada);
     }
+    free(m->tabla_hash);
     m->tabla_hash = tabla_nueva;
 }
 

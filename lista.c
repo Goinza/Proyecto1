@@ -107,6 +107,7 @@ void l_destruir(tLista * l, void (*fEliminar)(tElemento)) {
         aux = pos;
         pos = pos->siguiente;
         fEliminar(aux->elemento);
+        //poner en null los campos de aux
         free(aux);
     }
 }
