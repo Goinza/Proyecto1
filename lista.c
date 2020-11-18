@@ -97,6 +97,8 @@ void l_eliminar(tLista l, tPosicion p, void (*fEliminar)(tElemento)) {
     tPosicion pEliminar = p->siguiente;
     p->siguiente = pEliminar->siguiente;
     fEliminar(pEliminar->elemento);
+    pEliminar->elemento = NULL;
+    pEliminar->siguiente = NULL;
     free(pEliminar);
 }
 
@@ -107,7 +109,8 @@ void l_destruir(tLista * l, void (*fEliminar)(tElemento)) {
         aux = pos;
         pos = pos->siguiente;
         fEliminar(aux->elemento);
-        //poner en null los campos de aux
+        aux->elemento = NULL;
+        aux->siguiente = NULL;
         free(aux);
     }
 }
