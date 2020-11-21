@@ -128,7 +128,7 @@ void m_destruir(tMapeo * m, void (*fEliminarC)(void *), void (*fEliminarV)(void 
     for (i=0; i<count; i++) {
         l_destruir(map->tabla_hash + i, eliminarEntrada);
     }
-    free(m);
+    free(map);
 }
 
 tValor m_recuperar(tMapeo m, tClave c) {
